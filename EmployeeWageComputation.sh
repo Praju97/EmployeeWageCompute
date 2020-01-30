@@ -1,19 +1,24 @@
 #!/bin/bash -x
 
 echo "Welcome to employee wage computation program"
-ISPARTTIME=1
-ISFULLTIME=2
-empRatePerHr=20
-randomcheck=$((RANDOM%3))
+IS_PART_TIME=1;
+IS_FULL_TIME=2;
+EMPLOYEE_RATE_PER_HOUR=20;
 
-if(( $ISFULLTIME == $randomcheck ))
-then
-  empHrs=8
-elif(($ISPARTTIME == $randomcheck))
-then
-  empHrs=4
-else
-  empHrs=0
-fi
-salary=$(($empHrs*$empRatePerHr))
+#VARIABLE
+employeeCheck=$((RANDOM%3));
+
+case $employeeCheck in
+	$IS_FULL_TIME)
+		employeeHours=8
+		;;
+	$IS_PART_TIME)
+		employeeHours=4
+		;;
+	*)
+		employeeHours=0
+		;;
+esac
+
+salary=$((employeeHours*EMPLOYEE_RATE_PER_HOUR));
 
