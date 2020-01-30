@@ -1,6 +1,7 @@
 #!/bin/bash -x
 
 echo "Welcome to employee wage computation program"
+declare -A employeeDailyWage
 IS_PART_TIME=1;
 IS_FULL_TIME=2;
 MAX_HOURS_IN_MONTH=100;
@@ -38,7 +39,8 @@ do
    ((totalWorkingDays++))
    workHours="$( getWorkHours $((RANDOM%3)) )"
    totalEmployeeHours=$(( $totalEmployeeHours+$workHours ));
-   employeeDailyWage[$totalWorkingDays]="$( calculatingDailyWage $workHours )"
+   employeeDailyWage[Day "$totalWorkingDays"]="$( calculatingDailyWage $workHours )"
 done
 totalSalary="$( calculatingDailyWage $totalEmployeeHours )"
 echo "Daily Wage " ${employeeDailyWage[@]}
+echo "All Keys " ${!employeeDailyWage[@]}
